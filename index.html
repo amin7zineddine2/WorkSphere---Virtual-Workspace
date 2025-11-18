@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div class="container">
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">WS <span>WorkSphere</span></div>
+                <button class="btn btn-primary" id="addEmployeeBtn">
+                    <span>+</span> Ajouter un employé
+                </button>
+            </div>
+            
+            <h3 class="section-title">Personnel non assigné</h3>
+            <ul class="unassigned-list" id="unassignedList">
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="floor-plan">
+                <div class="zone conference-room" data-zone="conference">
+                    <div class="zone-header">
+                        <div class="zone-title">Salle de conférence</div>
+                        <div class="zone-add-btn" data-zone="conference">+</div>
+                    </div>
+                    <div class="zone-content" id="conference-content">
+                    </div>
+                </div>
+
+                <div class="zone reception required-empty" data-zone="reception">
+                    <div class="zone-header">
+                        <div class="zone-title">Réception</div>
+                        <div class="zone-add-btn" data-zone="reception">+</div>
+                    </div>
+                    <div class="zone-content" id="reception-content">
+                    </div>
+                </div>
+
+                <div class="zone server-room required-empty" data-zone="server">
+                    <div class="zone-header">
+                        <div class="zone-title">Salle des serveurs</div>
+                        <div class="zone-add-btn" data-zone="server">+</div>
+                    </div>
+                    <div class="zone-content" id="server-content">
+                    </div>
+                </div>
+
+                <div class="zone security-room required-empty" data-zone="security">
+                    <div class="zone-header">
+                        <div class="zone-title">Salle de sécurité</div>
+                        <div class="zone-add-btn" data-zone="security">+</div>
+                    </div>
+                    <div class="zone-content" id="security-content">
+                    </div>
+                </div>
+
+                <div class="zone staff-room" data-zone="staff">
+                    <div class="zone-header">
+                        <div class="zone-title">Salle du personnel</div>
+                        <div class="zone-add-btn" data-zone="staff">+</div>
+                    </div>
+                    <div class="zone-content" id="staff-content">
+                    </div>
+                </div>
+
+                <div class="zone archive-room" data-zone="archive">
+                    <div class="zone-header">
+                        <div class="zone-title">Salle d'archives</div>
+                        <div class="zone-add-btn" data-zone="archive">+</div>
+                    </div>
+                    <div class="zone-content" id="archive-content">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
