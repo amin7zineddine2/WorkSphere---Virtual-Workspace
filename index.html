@@ -79,5 +79,66 @@
             </div>
         </main>
     </div>
+
+
+        <div class="modal" id="addEmployeeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ajouter un employé</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="employeeForm">
+                    <div class="form-group">
+                        <label class="form-label" for="employeeName">Nom</label>
+                        <input type="text" class="form-control" id="employeeName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="employeeRole">Rôle</label>
+                        <select class="form-control" id="employeeRole" required>
+                            <option value="">Sélectionner un rôle</option>
+                            <option value="receptionist">Réceptionniste</option>
+                            <option value="technician">Technicien IT</option>
+                            <option value="security">Agent de sécurité</option>
+                            <option value="manager">Manager</option>
+                            <option value="cleaner">Nettoyage</option>
+                            <option value="other">Autre</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="employeePhoto">Photo (URL)</label>
+                        <input type="url" class="form-control" id="employeePhoto">
+                        <img id="photoPreview" class="photo-preview" alt="Aperçu de la photo">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="employeeEmail">Email</label>
+                        <input type="email" class="form-control" id="employeeEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="employeePhone">Téléphone</label>
+                        <input type="tel" class="form-control" id="employeePhone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Expériences professionnelles</label>
+                        <div id="experiencesContainer">
+                            <div class="experience-item">
+                                <input type="text" class="form-control experience-input" placeholder="Expérience professionnelle">
+                            </div>
+                        </div>
+                        <button type="button" class="add-experience-btn" id="addExperienceBtn">Ajouter une expérience</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" style="width: auto; padding: 12px 24px;">Ajouter l'employé</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
