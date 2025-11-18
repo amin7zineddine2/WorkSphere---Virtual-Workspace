@@ -140,5 +140,46 @@
             </div>
         </div>
     </div>
+
+
+        <div class="modal profile-modal" id="employeeProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Profil de l'employé</h3>
+                <button class="close-btn">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-header">
+                    <img id="profileAvatar" class="profile-avatar" src="" alt="Photo de l'employé">
+                    <div class="profile-info">
+                        <h2 id="profileName" class="profile-name"></h2>
+                        <div id="profileRole" class="profile-role"></div>
+                    </div>
+                </div>
+                
+                <div class="profile-details">
+                    <div class="profile-detail">
+                        <span class="profile-detail-label">Email:</span>
+                        <span id="profileEmail"></span>
+                    </div>
+                    <div class="profile-detail">
+                        <span class="profile-detail-label">Téléphone:</span>
+                        <span id="profilePhone"></span>
+                    </div>
+                    <div class="profile-detail">
+                        <span class="profile-detail-label">Localisation actuelle:</span>
+                        <span id="profileLocation"></span>
+                    </div>
+                </div>
+                
+                <div class="profile-experiences">
+                    <h3>Expériences professionnelles</h3>
+                    <ul id="profileExperiences" class="experience-list">
+                        <!-- Experiences will be populated here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
