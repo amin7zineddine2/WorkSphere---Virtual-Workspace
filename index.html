@@ -12,11 +12,11 @@
             <div class="sidebar-header">
                 <div class="logo">WS <span>WorkSphere</span></div>
                 <button class="btn btn-primary" id="addEmployeeBtn">
-                    <span>+</span> Ajouter un employé
+                    <span>+</span> Ajouter un employe
                 </button>
             </div>
             
-            <h3 class="section-title">Personnel non assigné</h3>
+            <h3 class="section-title">Personnel non assigne</h3>
             <ul class="unassigned-list" id="unassignedList">
             </ul>
         </aside>
@@ -25,7 +25,7 @@
             <div class="floor-plan">
                 <div class="zone conference-room" data-zone="conference">
                     <div class="zone-header">
-                        <div class="zone-title">Salle de conférence</div>
+                        <div class="zone-title">Salle de conference</div>
                         <div class="zone-add-btn" data-zone="conference">+</div>
                     </div>
                     <div class="zone-content" id="conference-content">
@@ -34,7 +34,7 @@
 
                 <div class="zone reception required-empty" data-zone="reception">
                     <div class="zone-header">
-                        <div class="zone-title">Réception</div>
+                        <div class="zone-title">Reception</div>
                         <div class="zone-add-btn" data-zone="reception">+</div>
                     </div>
                     <div class="zone-content" id="reception-content">
@@ -52,7 +52,7 @@
 
                 <div class="zone security-room required-empty" data-zone="security">
                     <div class="zone-header">
-                        <div class="zone-title">Salle de sécurité</div>
+                        <div class="zone-title">Salle de securite</div>
                         <div class="zone-add-btn" data-zone="security">+</div>
                     </div>
                     <div class="zone-content" id="security-content">
@@ -84,8 +84,8 @@
         <div class="modal" id="addEmployeeModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Ajouter un employé</h3>
-                <button class="close-btn">&times;</button>
+                <h3 class="modal-title">Ajouter un employe</h3>
+                <button class="close-btn">X</button>
             </div>
             <div class="modal-body">
                 <form id="employeeForm">
@@ -97,10 +97,10 @@
                     <div class="form-group">
                         <label class="form-label" for="employeeRole">Rôle</label>
                         <select class="form-control" id="employeeRole" required>
-                            <option value="">Sélectionner un rôle</option>
-                            <option value="receptionist">Réceptionniste</option>
+                            <option value="">Selectionner un rôle</option>
+                            <option value="receptionist">Receptionniste</option>
                             <option value="technician">Technicien IT</option>
-                            <option value="security">Agent de sécurité</option>
+                            <option value="security">Agent de securite</option>
                             <option value="manager">Manager</option>
                             <option value="cleaner">Nettoyage</option>
                             <option value="other">Autre</option>
@@ -119,22 +119,22 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label" for="employeePhone">Téléphone</label>
+                        <label class="form-label" for="employeePhone">Telephone</label>
                         <input type="tel" class="form-control" id="employeePhone" required>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">Expériences professionnelles</label>
+                        <label class="form-label">Experiences professionnelles</label>
                         <div id="experiencesContainer">
                             <div class="experience-item">
-                                <input type="text" class="form-control experience-input" placeholder="Expérience professionnelle">
+                                <input type="text" class="form-control experience-input" placeholder="Experience professionnelle">
                             </div>
                         </div>
-                        <button type="button" class="add-experience-btn" id="addExperienceBtn">Ajouter une expérience</button>
+                        <button type="button" class="add-experience-btn" id="addExperienceBtn">Ajouter une experience</button>
                     </div>
                     
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary" style="width: auto; padding: 12px 24px;">Ajouter l'employé</button>
+                        <button type="submit" class="btn btn-primary" style="width: auto; padding: 12px 24px;">Ajouter l'employe</button>
                     </div>
                 </form>
             </div>
@@ -145,12 +145,12 @@
         <div class="modal profile-modal" id="employeeProfileModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Profil de l'employé</h3>
+                <h3 class="modal-title">Profil de l'employe</h3>
                 <button class="close-btn">X</button>
             </div>
             <div class="modal-body">
                 <div class="profile-header">
-                    <img id="profileAvatar" class="profile-avatar" src="" alt="Photo de l'employé">
+                    <img id="profileAvatar" class="profile-avatar" src="" alt="Photo de l'employe">
                     <div class="profile-info">
                         <h2 id="profileName" class="profile-name"></h2>
                         <div id="profileRole" class="profile-role"></div>
@@ -163,7 +163,7 @@
                         <span id="profileEmail"></span>
                     </div>
                     <div class="profile-detail">
-                        <span class="profile-detail-label">Téléphone:</span>
+                        <span class="profile-detail-label">Telephone:</span>
                         <span id="profilePhone"></span>
                     </div>
                     <div class="profile-detail">
@@ -173,7 +173,7 @@
                 </div>
                 
                 <div class="profile-experiences">
-                    <h3>Expériences professionnelles</h3>
+                    <h3>Experiences professionnelles</h3>
                     <ul id="profileExperiences" class="experience-list">
                         <!-- Experiences will be populated here -->
                     </ul>
@@ -186,13 +186,13 @@
         <div class="modal" id="assignEmployeeModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Assigner un employé</h3>
+                <h3 class="modal-title">Assigner un employe</h3>
                 <button class="close-btn">X</button>
             </div>
             <div class="modal-body">
-                <p id="assignZoneInfo">Sélectionnez un employé à assigner à cette zone:</p>
+                <p id="assignZoneInfo">ajouter un employe a cette zone:</p>
                 <ul id="eligibleEmployeesList">
-                    <!-- Eligible employees will be populated here -->
+                    
                 </ul>
             </div>
         </div>
