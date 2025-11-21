@@ -16,6 +16,7 @@ body {
     min-height: 100vh;
 }
 
+/* Sidebar Styles */
 .sidebar {
     width: 320px;
     background-color: white;
@@ -24,7 +25,6 @@ body {
     overflow-y: auto;
     transition: all 0.3s ease;
 }
-
 
 .sidebar-header {
     margin-bottom: 32px;
@@ -88,7 +88,7 @@ body {
     align-items: center;
     cursor: move;
     transition: all 0.3s ease;
-    border-left: 4px solid #1a73e8;
+    /* Supprimer la bordure gauche */
 }
 
 .unassigned-item:hover {
@@ -124,6 +124,7 @@ body {
     display: inline-block;
 }
 
+/* Main Content Styles */
 .main-content {
     flex-grow: 1;
     padding: 24px;
@@ -147,7 +148,8 @@ body {
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
-    border-top: 4px solid transparent;
+    /* Supprimer toutes les bordures par défaut */
+    border: none;
     position: relative;
     overflow: hidden;
 }
@@ -224,7 +226,7 @@ body {
     width: 100%;
     cursor: pointer;
     transition: all 0.3s ease;
-    border-left: 3px solid #1a73e8;
+    /* Supprimer la bordure gauche */
     position: relative;
     z-index: 2;
 }
@@ -260,14 +262,11 @@ body {
     background-color: rgba(234, 67, 53, 0.1);
 }
 
+/* Zone positions based on the provided grid */
 .conference-room {
     grid-column: 1 / span 4;
     grid-row: 1 / span 2;
-    border-top-color: #9c27b0;
 }
-
-
-
 
 .conference-room::before {
     background-image: url('images/conference-room.jpg');
@@ -276,7 +275,6 @@ body {
 .reception {
     grid-column: 1 / span 4;
     grid-row: 3 / span 4;
-    border-top-color: #f44336;
 }
 
 .reception::before {
@@ -286,7 +284,6 @@ body {
 .server-room {
     grid-column: 7 / span 3;
     grid-row: 1 / span 2;
-    border-top-color: #2196f3;
 }
 
 .server-room::before {
@@ -296,7 +293,6 @@ body {
 .security-room {
     grid-column: 10 / span 3;
     grid-row: 1 / span 2;
-    border-top-color: #ff9800;
 }
 
 .security-room::before {
@@ -306,7 +302,6 @@ body {
 .staff-room {
     grid-column: 7 / span 3;
     grid-row: 5 / span 2;
-    border-top-color: #4caf50;
 }
 
 .staff-room::before {
@@ -316,14 +311,23 @@ body {
 .archive-room {
     grid-column: 10 / span 3;
     grid-row: 5 / span 2;
-    border-top-color: #607d8b;
 }
 
 .archive-room::before {
     background-image: url('images/archive-room.jpg');
 }
 
+/* Principal Zones - Red transparent background when empty */
+.zone.principal-zone.empty {
+    background-color: rgba(234, 67, 53, 0.1); /* Rouge transparent */
+}
 
+/* Supprimer l'ancienne classe required-empty */
+.zone.required-empty {
+    /* Cette classe n'est plus utilisée */
+}
+
+/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -341,7 +345,7 @@ body {
 .modal-content {
     background-color: white;
     width: 90%;
-    max-width: 600px;
+    max-width: 700px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -353,7 +357,6 @@ body {
         opacity: 0;
         transform: translateY(-20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -395,6 +398,8 @@ body {
 
 .modal-body {
     padding: 24px;
+    max-height: 70vh;
+    overflow-y: auto;
 }
 
 .form-group {
@@ -434,31 +439,68 @@ body {
 }
 
 .experience-item {
+    background-color: #f8f9fa;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #e8eaed;
+}
+
+.experience-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 12px;
+}
+
+.experience-title {
+    font-weight: 600;
+    color: #1a73e8;
+}
+
+.remove-experience-btn {
+    background-color: #ea4335;
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.experience-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
 }
 
-.experience-item input {
-    flex-grow: 1;
+.experience-fields .form-group {
+    margin-bottom: 12px;
 }
 
 .add-experience-btn {
     background-color: #1a73e8;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 10px 16px;
     border-radius: 12px;
     cursor: pointer;
     font-size: 14px;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .add-experience-btn:hover {
     background-color: #0d62c9;
 }
 
-
+/* Employee Profile Modal */
 .profile-modal .modal-content {
     max-width: 500px;
 }
@@ -535,3 +577,40 @@ body {
     position: absolute;
     left: 0;
 }
+
+/* Validation Styles */
+.form-control.error {
+    border-color: #ea4335;
+    box-shadow: 0 0 0 2px rgba(234, 67, 53, 0.2);
+}
+
+.form-control.success {
+    border-color: #34a853;
+    box-shadow: 0 0 0 2px rgba(52, 168, 83, 0.2);
+}
+
+.error-message {
+    color: #ea4335;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Style pour les champs de date */
+input[type="month"] {
+    position: relative;
+}
+
+input[type="month"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
