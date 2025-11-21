@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style></style>
+    <title>WS WorkSphere</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-        <div class="container">
-
+    <div class="container">
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="logo">WS <span>WorkSphere</span></div>
-                <button class="btn btn-primary" id="addEmployeeBtn">
+                <button class="btn btn-primary" id="addEmplBtn">
                     <span>+</span> Ajouter un employe
                 </button>
             </div>
             
             <h3 class="section-title">Personnel non assigne</h3>
-            <ul class="unassigned-list" id="unassignedList">
+            <ul class="unassigned-list" id="nonIntegrer">
             </ul>
         </aside>
 
@@ -27,16 +26,16 @@
                 <div class="zone conference-room" data-zone="conference">
                     <div class="zone-header">
                         <div class="zone-title">Salle de conference</div>
-                        <div class="zone-add-btn" data-zone="conference">+</div>
+                        <div class="addbtn" data-zone="conference">+</div>
                     </div>
-                    <div class="zone-content" id="conference-content">
+                    <div class="zone-content" id="conference-content">0
                     </div>
                 </div>
 
                 <div class="zone reception required-empty" data-zone="reception">
                     <div class="zone-header">
                         <div class="zone-title">Reception</div>
-                        <div class="zone-add-btn" data-zone="reception">+</div>
+                        <div class="addbtn" data-zone="reception">+</div>
                     </div>
                     <div class="zone-content" id="reception-content">
                     </div>
@@ -45,7 +44,7 @@
                 <div class="zone server-room required-empty" data-zone="server">
                     <div class="zone-header">
                         <div class="zone-title">Salle des serveurs</div>
-                        <div class="zone-add-btn" data-zone="server">+</div>
+                        <div class="addbtn" data-zone="server">+</div>
                     </div>
                     <div class="zone-content" id="server-content">
                     </div>
@@ -54,7 +53,7 @@
                 <div class="zone security-room required-empty" data-zone="security">
                     <div class="zone-header">
                         <div class="zone-title">Salle de securite</div>
-                        <div class="zone-add-btn" data-zone="security">+</div>
+                        <div class="addbtn" data-zone="security">+</div>
                     </div>
                     <div class="zone-content" id="security-content">
                     </div>
@@ -63,7 +62,7 @@
                 <div class="zone staff-room" data-zone="staff">
                     <div class="zone-header">
                         <div class="zone-title">Salle du personnel</div>
-                        <div class="zone-add-btn" data-zone="staff">+</div>
+                        <div class="addbtn" data-zone="staff">+</div>
                     </div>
                     <div class="zone-content" id="staff-content">
                     </div>
@@ -72,7 +71,7 @@
                 <div class="zone archive-room" data-zone="archive">
                     <div class="zone-header">
                         <div class="zone-title">Salle d'archives</div>
-                        <div class="zone-add-btn" data-zone="archive">+</div>
+                        <div class="addbtn" data-zone="archive">+</div>
                     </div>
                     <div class="zone-content" id="archive-content">
                     </div>
@@ -81,15 +80,14 @@
         </main>
     </div>
 
-
-        <div class="modal" id="addEmployeeModal">
+    <div class="modal" id="addEmplModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Ajouter un employe</h3>
-                <button class="close-btn">X</button>
+                <button class="closebtn">X</button>
             </div>
             <div class="modal-body">
-                <form id="employeeForm">
+                <form id="form">
                     <div class="form-group">
                         <label class="form-label" for="employeeName">Nom</label>
                         <input type="text" class="form-control" id="employeeName" required>
@@ -128,10 +126,29 @@
                         <label class="form-label">Experiences professionnelles</label>
                         <div id="experiencesContainer">
                             <div class="experience-item">
-                                <input type="text" class="form-control experience-input" placeholder="Experience professionnelle">
+                                <div class="experience-header">
+                                    <div class="experience-title">Experience #1</div>
+                                    <button type="button" class="remove-experience-btn">×</button>
+                                </div>
+                                <div class="experience-fields">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control job-title" placeholder="Poste" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control company" placeholder="Entreprise" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="month" class="form-control start-date" placeholder="Date de debut" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="month" class="form-control end-date" placeholder="Date de fin" required>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <button type="button" class="add-experience-btn" id="addExperienceBtn">Ajouter une experience</button>
+                        <button type="button" class="add-experience-btn" id="addExperience">
+                            <span>+</span> Ajouter une experience
+                        </button>
                     </div>
                     
                     <div class="form-group">
@@ -142,12 +159,11 @@
         </div>
     </div>
 
-
-        <div class="modal profile-modal" id="employeeProfileModal">
+    <div class="modal profile-modal" id="profilz">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Profil de l'employe</h3>
-                <button class="close-btn">X</button>
+                <button class="closebtn">X</button>
             </div>
             <div class="modal-body">
                 <div class="profile-header">
@@ -176,27 +192,26 @@
                 <div class="profile-experiences">
                     <h3>Experiences professionnelles</h3>
                     <ul id="profileExperiences" class="experience-list">
-                        <!-- Experiences will be populated here -->
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-
-        <div class="modal" id="assignEmployeeModal">
+    <div class="modal" id="afecterEmployeeModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Assigner un employe</h3>
-                <button class="close-btn">X</button>
+                <button class="closebtn">X</button>
             </div>
             <div class="modal-body">
-                <p id="assignZoneInfo">ajouter un employe a cette zone:</p>
-                <ul id="eligibleEmployeesList">
-                    
+                <p id="assignZoneInfo">Selectionnez un employe à assigner à cette zone:</p>
+                <ul id="eligibleEmployesList">
                 </ul>
             </div>
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
