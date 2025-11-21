@@ -3,6 +3,7 @@ let employes = [
         id: 1,
         name: "amin zineddine",
         role: "manager",
+        photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
         email: "aminzineddine@gmail.com",
         phone: "0771040004",
         experiences: [
@@ -25,6 +26,7 @@ let employes = [
         id: 2,
         name: "ilyas elgrech",
         role: "receptionist",
+        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
         email: "jean.martin@worksphere.com",
         phone: "06 34 56 78 90",
         experiences: [
@@ -47,6 +49,7 @@ let employes = [
         id: 3,
         name: "oussama kara",
         role: "technician",
+        photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
         email: "sophie.laurent@worksphere.com",
         phone: "06 45 67 89 06",
         experiences: [
@@ -69,6 +72,7 @@ let employes = [
         id: 4,
         name: "achraf setar",
         role: "security",
+        photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
         email: "pierre.moreau@worksphere.com",
         phone: "06 56 78 90 12",
         experiences: [
