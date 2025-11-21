@@ -114,6 +114,11 @@ const capacityZone = {
 const principalZones = ["reception", "server", "security"];
 
 const validationRegex = {
+    name: /^[a-zA-ZÀ-ÿ\s]{2,50}$/,
+    email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    phone: /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/,
+    jobTitle: /^[a-zA-ZÀ-ÿ\s\-]{2,50}$/,
+    company: /^[a-zA-ZÀ-ÿ0-9\s\-&.,]{2,50}$/
 };
 
 const nonIntegrer = document.getElementById('nonIntegrer');
@@ -351,6 +356,10 @@ function markPrincipalZones() {
         const zone = document.querySelector(`.zone[data-zone="${zoneId}"]`);
         if (zone) {
             zone.classList.add('principal-zone');
+            const zoneEmployes = employes.filter(emp => emp.location === zoneId);
+            if (zoneEmployes.length === 0) {
+                zone.classList.add('empty');
+            }
         }
     });
 }
@@ -417,20 +426,6 @@ function renderZoneEmployes(zoneId) {
     updateZoneVisual(zoneId);
 }
 
-
-function markPrincipalZones() {
-    principalZones.forEach(zoneId => {
-        const zone = document.querySelector(`.zone[data-zone="${zoneId}"]`);
-        if (zone) {
-            zone.classList.add('principal-zone');
-            const zoneEmployes = employes.filter(emp => emp.location === zoneId);
-            if (zoneEmployes.length === 0) {
-                zone.classList.add('empty');
-            }
-        }
-    });
-}
-
 function updateZoneVisual(zoneId) {
     const zone = document.querySelector(`.zone[data-zone="${zoneId}"]`);
     const zoneEmployes = employes.filter(emp => emp.location === zoneId);
@@ -448,7 +443,6 @@ function updateZoneVisual(zoneId) {
         addButton.style.display = 'flex';
     }
 }
-
 
 function updateZoneVisuals() {
     Object.keys(employeZone).forEach(zoneId => {
@@ -502,6 +496,16 @@ function addExperienceField() {
     });
 }
 
+function getDefaultPhoto() {
+    const defaultPhotos = [
+        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop&crop=face",
+        "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=150&h=150&fit=crop&crop=face",
+        "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=150&h=150&fit=crop&crop=face",
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face"
+    ];
+    return defaultPhotos[Math.floor(Math.random() * defaultPhotos.length)];
+}
+
 function handleEmployesubmit(e) {
     e.preventDefault();
     
@@ -512,6 +516,7 @@ function handleEmployesubmit(e) {
     
     const name = document.getElementById('employeeName').value.trim();
     const role = document.getElementById('employeeRole').value;
+    const photo = document.getElementById('employeePhoto').value || getDefaultPhoto();
     const email = document.getElementById('employeeEmail').value.trim();
     const phone = document.getElementById('employeePhone').value.trim();
     
@@ -669,6 +674,27 @@ function removeEmployeeFromZone(employeeId) {
     renderZoneEmployes(previousZone);
 }
 
+function handleMobileRotation() {
+    const rotationMessage = document.getElementById('rotationMessage');
+    const isMobile = window.innerWidth <= 767;
+    
+    if (isMobile) {
+        const isPortrait = window.innerHeight > window.innerWidth;
+        
+        if (isPortrait) {
+            rotationMessage.classList.add('show');
+        } else {
+            rotationMessage.classList.remove('show');
+        }
+    } else {
+        rotationMessage.classList.remove('show');
+    }
+}
+
+window.addEventListener('resize', handleMobileRotation);
+window.addEventListener('orientationchange', handleMobileRotation);
+
 document.addEventListener('DOMContentLoaded', () => {
     main();
+    handleMobileRotation();
 });
