@@ -129,21 +129,21 @@ const afecterEmployeeModal = document.getElementById('afecterEmployeeModal');
 const form = document.getElementById('form');
 const photoPreview = document.getElementById('photoPreview');
 const employeePhotoInput = document.getElementById('employeePhoto');
-
-const addExperience = document.getElementById('addExperience');
+const addExperience = document.getElementById('addExperience')
 const experiencesContainer = document.getElementById('experiencesContainer');
 const closeButtons = document.querySelectorAll('.closebtn');
 const AddButtons = document.querySelectorAll('.addbtn');
+
 
 function main() {
     markPrincipalZones();
     employeDispo();
     updateZoneVisuals();
-    
+
     addEmplBtn.addEventListener('click', () => {
         addEmplModal.style.display = 'flex';
     });
-    
+
     employeePhotoInput.addEventListener('input', () => {
         const url = employeePhotoInput.value;
         if (url) {
@@ -153,13 +153,13 @@ function main() {
             photoPreview.style.display = 'none';
         }
     });
-    
+
     addExperience.addEventListener('click', addExperienceField);
-    
+
     form.addEventListener('submit', handleEmployesubmit);
-    
+
     setupRealTimeValidation();
-    
+
     closeButtons.forEach(button => {
         button.addEventListener('click', () => {
             addEmplModal.style.display = 'none';
@@ -167,14 +167,14 @@ function main() {
             afecterEmployeeModal.style.display = 'none';
         });
     });
-    
+
     AddButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             const zone = e.target.getAttribute('data-zone');
             openafecterEmployeeModal(zone);
         });
     });
-    
+
     window.addEventListener('click', (e) => {
         if (e.target === addEmplModal) {
             addEmplModal.style.display = 'none';
@@ -193,12 +193,12 @@ function setupRealTimeValidation() {
     const emailInput = document.getElementById('employeeEmail');
     const phoneInput = document.getElementById('employeePhone');
     const roleSelect = document.getElementById('employeeRole');
-    
+
     nameInput.addEventListener('blur', () => validateField(nameInput, 'name'));
     emailInput.addEventListener('blur', () => validateField(emailInput, 'email'));
     phoneInput.addEventListener('blur', () => validateField(phoneInput, 'phone'));
     roleSelect.addEventListener('change', () => validateField(roleSelect, 'role'));
-    
+
     experiencesContainer.addEventListener('blur', (e) => {
         if (e.target.classList.contains('job-title')) {
             validateField(e.target, 'jobTitle');
@@ -212,16 +212,16 @@ function validateField(field, fieldType) {
     const value = field.value.trim();
     let isValid = true;
     let errorMessage = '';
-    
+
     field.classList.remove('error');
     field.classList.remove('success');
-    
+
     const existingError = field.parentNode.querySelector('.error-message');
     if (existingError) {
         existingError.remove();
     }
-    
-    switch(fieldType) {
+
+    switch (fieldType) {
         case 'name':
             if (!value) {
                 isValid = false;
@@ -231,7 +231,7 @@ function validateField(field, fieldType) {
                 errorMessage = 'Le nom doit contenir uniquement des lettres (2-50 caractères)';
             }
             break;
-            
+
         case 'email':
             if (!value) {
                 isValid = false;
@@ -241,7 +241,7 @@ function validateField(field, fieldType) {
                 errorMessage = 'Format d\'email invalide (ex: exemple@domaine.com)';
             }
             break;
-            
+
         case 'phone':
             if (!value) {
                 isValid = false;
@@ -251,14 +251,14 @@ function validateField(field, fieldType) {
                 errorMessage = 'Format de téléphone invalide (ex: 06 12 34 56 78 ou +33 6 12 34 56 78)';
             }
             break;
-            
+
         case 'role':
             if (!value) {
                 isValid = false;
                 errorMessage = 'Le rôle est requis';
             }
             break;
-            
+
         case 'jobTitle':
             if (!value) {
                 isValid = false;
@@ -268,7 +268,7 @@ function validateField(field, fieldType) {
                 errorMessage = 'Le poste doit contenir uniquement des lettres (2-50 caractères)';
             }
             break;
-            
+
         case 'company':
             if (!value) {
                 isValid = false;
@@ -279,14 +279,14 @@ function validateField(field, fieldType) {
             }
             break;
     }
-    
+
     if (!isValid) {
         field.classList.add('error');
         showErrorMessage(field, errorMessage);
     } else {
         field.classList.add('success');
     }
-    
+
     return isValid;
 }
 
@@ -297,35 +297,35 @@ function showErrorMessage(field, message) {
     errorDiv.style.fontSize = '12px';
     errorDiv.style.marginTop = '4px';
     errorDiv.textContent = message;
-    
+
     field.parentNode.appendChild(errorDiv);
 }
 
 function validateForm() {
     let isValid = true;
-    
+
     const nameInput = document.getElementById('employeeName');
     const emailInput = document.getElementById('employeeEmail');
     const phoneInput = document.getElementById('employeePhone');
     const roleSelect = document.getElementById('employeeRole');
-    
+
     if (!validateField(nameInput, 'name')) isValid = false;
     if (!validateField(emailInput, 'email')) isValid = false;
     if (!validateField(phoneInput, 'phone')) isValid = false;
     if (!validateField(roleSelect, 'role')) isValid = false;
-    
+
     const jobTitleInputs = document.querySelectorAll('.job-title');
     const companyInputs = document.querySelectorAll('.company');
     const startDateInputs = document.querySelectorAll('.start-date');
     const endDateInputs = document.querySelectorAll('.end-date');
-    
+
     for (let i = 0; i < jobTitleInputs.length; i++) {
         if (!validateField(jobTitleInputs[i], 'jobTitle')) isValid = false;
         if (!validateField(companyInputs[i], 'company')) isValid = false;
-        
+
         const startDate = startDateInputs[i].value;
         const endDate = endDateInputs[i].value;
-        
+
         if (!startDate) {
             isValid = false;
             startDateInputs[i].classList.add('error');
@@ -333,7 +333,7 @@ function validateForm() {
         } else {
             startDateInputs[i].classList.remove('error');
         }
-        
+
         if (!endDate) {
             isValid = false;
             endDateInputs[i].classList.add('error');
@@ -341,14 +341,14 @@ function validateForm() {
         } else {
             endDateInputs[i].classList.remove('error');
         }
-        
+
         if (startDate && endDate && startDate > endDate) {
             isValid = false;
             endDateInputs[i].classList.add('error');
             showErrorMessage(endDateInputs[i], 'La date de fin doit être après la date de début');
         }
     }
-    
+
     return isValid;
 }
 
@@ -367,14 +367,14 @@ function markPrincipalZones() {
 
 function employeDispo() {
     nonIntegrer.innerHTML = '';
-    
+
     const unassignedEmployes = employes.filter(emp => emp.location === null);
-    
+
     unassignedEmployes.forEach(employee => {
         const li = document.createElement('li');
         li.className = 'unassigned-item fade-in';
         li.setAttribute('data-id', employee.id);
-        
+
         li.innerHTML = `
             <img src="${employee.photo}" alt="${employee.name}" class="employee-avatar">
             <div class="employee-info">
@@ -382,11 +382,11 @@ function employeDispo() {
                 <div class="employee-role">${getRoleLabel(employee.role)}</div>
             </div>
         `;
-        
+
         li.addEventListener('click', () => {
             openEmployeeProfile(employee.id);
         });
-        
+
         nonIntegrer.appendChild(li);
     });
 }
@@ -394,14 +394,14 @@ function employeDispo() {
 function renderZoneEmployes(zoneId) {
     const zoneContent = document.getElementById(`${zoneId}-content`);
     zoneContent.innerHTML = '';
-    
+
     const zoneEmployes = employes.filter(emp => emp.location === zoneId);
-    
+
     zoneEmployes.forEach(employee => {
         const employeeDiv = document.createElement('div');
         employeeDiv.className = 'zone-employee fade-in';
         employeeDiv.setAttribute('data-id', employee.id);
-        
+
         employeeDiv.innerHTML = `
             <img src="${employee.photo}" alt="${employee.name}" class="employee-avatar">
             <div class="employee-info">
@@ -409,34 +409,34 @@ function renderZoneEmployes(zoneId) {
                 <button class="remove-btn">×</button>
             </div>
         `;
-            
+
         employeeDiv.addEventListener('click', (e) => {
             if (!e.target.classList.contains('remove-btn')) {
                 openEmployeeProfile(employee.id);
             }
         });
-        
+
         const removeBtn = employeeDiv.querySelector('.remove-btn');
         removeBtn.addEventListener('click', () => {
             removeEmployeeFromZone(employee.id);
         });
-        
+
         zoneContent.appendChild(employeeDiv);
     });
-    
+
     updateZoneVisual(zoneId);
 }
 
 function updateZoneVisual(zoneId) {
     const zone = document.querySelector(`.zone[data-zone="${zoneId}"]`);
     const zoneEmployes = employes.filter(emp => emp.location === zoneId);
-    
+
     if (zoneEmployes.length === 0 && principalZones.includes(zoneId)) {
         zone.classList.add('empty');
     } else {
         zone.classList.remove('empty');
     }
-    
+
     const addButton = zone.querySelector('.addbtn');
     if (zoneEmployes.length >= capacityZone[zoneId]) {
         addButton.style.display = 'none';
@@ -460,7 +460,7 @@ function getRoleLabel(role) {
         cleaner: "Nettoyage",
         other: "Autre"
     };
-    
+
     return roleLabels[role] || role;
 }
 
@@ -488,9 +488,9 @@ function addExperienceField() {
             </div>
         </div>
     `;
-    
+
     experiencesContainer.appendChild(experienceItem);
-    
+
     const removeBtn = experienceItem.querySelector('.remove-experience-btn');
     removeBtn.addEventListener('click', () => {
         experiencesContainer.removeChild(experienceItem);
@@ -509,27 +509,27 @@ function getDefaultPhoto() {
 
 function handleEmployesubmit(e) {
     e.preventDefault();
-    
+
     if (!validateForm()) {
         alert('Veuillez corriger les erreurs dans le formulaire avant de soumettre.');
         return;
     }
-    
+
     const name = document.getElementById('employeeName').value.trim();
     const role = document.getElementById('employeeRole').value;
     const photo = document.getElementById('employeePhoto').value || getDefaultPhoto();
     const email = document.getElementById('employeeEmail').value.trim();
     const phone = document.getElementById('employeePhone').value.trim();
-    
+
     const experiences = [];
     const experienceItems = document.querySelectorAll('.experience-item');
-    
+
     experienceItems.forEach(item => {
         const jobTitle = item.querySelector('.job-title').value.trim();
         const company = item.querySelector('.company').value.trim();
         const startDate = item.querySelector('.start-date').value;
         const endDate = item.querySelector('.end-date').value;
-        
+
         experiences.push({
             jobTitle,
             company,
@@ -537,7 +537,7 @@ function handleEmployesubmit(e) {
             endDate
         });
     });
-    
+
     const newEmployee = {
         id: employes.length > 0 ? Math.max(...employes.map(emp => emp.id)) + 1 : 1,
         name,
@@ -548,10 +548,10 @@ function handleEmployesubmit(e) {
         experiences,
         location: null
     };
-    
+
     employes.push(newEmployee);
     employeDispo();
-    
+
     form.reset();
     photoPreview.style.display = 'none';
     experiencesContainer.innerHTML = `
@@ -576,12 +576,12 @@ function handleEmployesubmit(e) {
             </div>
         </div>
     `;
-    
+
     const newRemoveBtn = experiencesContainer.querySelector('.remove-experience-btn');
     newRemoveBtn.addEventListener('click', () => {
         experiencesContainer.removeChild(experiencesContainer.querySelector('.experience-item'));
     });
-    
+
     addEmplModal.style.display = 'none';
     alert('Employé ajouté avec succès!');
 }
@@ -589,21 +589,21 @@ function handleEmployesubmit(e) {
 function openEmployeeProfile(employeeId) {
     const employee = employes.find(emp => emp.id === employeeId);
     if (!employee) return;
-    
+
     document.getElementById('profileAvatar').src = employee.photo;
     document.getElementById('profileName').textContent = employee.name;
     document.getElementById('profileRole').textContent = getRoleLabel(employee.role);
     document.getElementById('profileEmail').textContent = employee.email;
     document.getElementById('profilePhone').textContent = employee.phone;
-    
-    const location = employee.location ? 
-        document.querySelector(`.zone[data-zone="${employee.location}"] .zone-title`).textContent : 
+
+    const location = employee.location ?
+        document.querySelector(`.zone[data-zone="${employee.location}"] .zone-title`).textContent :
         "Non assigné";
     document.getElementById('profileLocation').textContent = location;
-    
+
     const experiencesList = document.getElementById('profileExperiences');
     experiencesList.innerHTML = '';
-    
+
     employee.experiences.forEach(exp => {
         const li = document.createElement('li');
         const startDate = new Date(exp.startDate + '-01').toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' });
@@ -611,22 +611,22 @@ function openEmployeeProfile(employeeId) {
         li.textContent = `${exp.jobTitle} chez ${exp.company} (${startDate} - ${endDate})`;
         experiencesList.appendChild(li);
     });
-    
+
     profilz.style.display = 'flex';
 }
 
 function openafecterEmployeeModal(zoneId) {
-    const eligibleEmployes = employes.filter(emp => 
-        emp.location === null && 
+    const eligibleEmployes = employes.filter(emp =>
+        emp.location === null &&
         employeZone[zoneId].includes(emp.role)
     );
-    
-    document.getElementById('assignZoneInfo').textContent = 
+
+    document.getElementById('assignZoneInfo').textContent =
         `Sélectionnez un employé à assigner à la ${document.querySelector(`.zone[data-zone="${zoneId}"] .zone-title`).textContent}:`;
-    
+
     const employesList = document.getElementById('eligibleEmployesList');
     employesList.innerHTML = '';
-    
+
     if (eligibleEmployes.length === 0) {
         employesList.innerHTML = '<li>Aucun employé éligible disponible</li>';
     } else {
@@ -634,7 +634,7 @@ function openafecterEmployeeModal(zoneId) {
             const li = document.createElement('li');
             li.className = 'unassigned-item';
             li.setAttribute('data-id', employee.id);
-            
+
             li.innerHTML = `
                 <img src="${employee.photo}" alt="${employee.name}" class="employee-avatar">
                 <div class="employee-info">
@@ -642,23 +642,23 @@ function openafecterEmployeeModal(zoneId) {
                     <div class="employee-role">${getRoleLabel(employee.role)}</div>
                 </div>
             `;
-            
+
             li.addEventListener('click', () => {
                 assignEmployeeToZone(employee.id, zoneId);
                 afecterEmployeeModal.style.display = 'none';
             });
-            
+
             employesList.appendChild(li);
         });
     }
-    
+
     afecterEmployeeModal.style.display = 'flex';
 }
 
 function assignEmployeeToZone(employeeId, zoneId) {
     const employee = employes.find(emp => emp.id === employeeId);
     if (!employee) return;
-    
+
     employee.location = zoneId;
     employeDispo();
     renderZoneEmployes(zoneId);
@@ -667,10 +667,10 @@ function assignEmployeeToZone(employeeId, zoneId) {
 function removeEmployeeFromZone(employeeId) {
     const employee = employes.find(emp => emp.id === employeeId);
     if (!employee) return;
-    
+
     const previousZone = employee.location;
     employee.location = null;
-    
+
     employeDispo();
     renderZoneEmployes(previousZone);
 }
@@ -678,10 +678,10 @@ function removeEmployeeFromZone(employeeId) {
 function handleMobileRotation() {
     const rotationMessage = document.getElementById('rotationMessage');
     const isMobile = window.innerWidth <= 767;
-    
+
     if (isMobile) {
         const isPortrait = window.innerHeight > window.innerWidth;
-        
+
         if (isPortrait) {
             rotationMessage.classList.add('show');
         } else {
