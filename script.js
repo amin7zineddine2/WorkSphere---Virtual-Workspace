@@ -129,6 +129,7 @@ const afecterEmployeeModal = document.getElementById('afecterEmployeeModal');
 const form = document.getElementById('form');
 const photoPreview = document.getElementById('photoPreview');
 const employeePhotoInput = document.getElementById('employeePhoto');
+
 const addExperience = document.getElementById('addExperience');
 const experiencesContainer = document.getElementById('experiencesContainer');
 const closeButtons = document.querySelectorAll('.closebtn');
