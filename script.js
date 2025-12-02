@@ -697,7 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
     handleMobileRotation();
 });
 
-
+    
 // function compteurExperience(a){
 //     const E = [];
 //     let b ;
