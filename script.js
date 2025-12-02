@@ -134,7 +134,6 @@ const experiencesContainer = document.getElementById('experiencesContainer');
 const closeButtons = document.querySelectorAll('.closebtn');
 const AddButtons = document.querySelectorAll('.addbtn');
 
-
 function main() {
     zonePrincipal();
     employeDispo();
@@ -714,3 +713,25 @@ document.addEventListener('DOMContentLoaded', () => {
 // }
 
 // console.log(compteurExperience(1));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
