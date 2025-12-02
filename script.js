@@ -715,15 +715,3 @@ document.addEventListener('DOMContentLoaded', () => {
 // console.log(compteurExperience(1));
 
 
-
-
-
-
-
-
-
-
-
-
-
-
