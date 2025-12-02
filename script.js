@@ -698,7 +698,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
 // function compteurExperience(a){
 //     const E = [];
 //     let b ;
