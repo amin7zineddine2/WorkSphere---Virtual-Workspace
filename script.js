@@ -3,21 +3,21 @@ let employes = [
         id: 1,
         name: "amin zineddine",
         role: "manager",
-        photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
         email: "aminzineddine@gmail.com",
         phone: "0771040004",
         experiences: [
             {
                 jobTitle: "Manager d'équipe",
                 company: "Entreprise ABC",
-                startDate: "2018-01",
-                endDate: "2024-01"
+                startDate: "2018",
+                endDate: "2024"
             },
             {
                 jobTitle: "Chef de projet",
                 company: "Société XYZ",
-                startDate: "2014-03",
-                endDate: "2018-01"
+                startDate: "2014",
+                endDate: "2018"
             }
         ],
         location: null
@@ -33,14 +33,14 @@ let employes = [
             {
                 jobTitle: "Réceptionniste",
                 company: "Hotel Plaza",
-                startDate: "2020-05",
-                endDate: "2023-08"
+                startDate: "2020",
+                endDate: "2023"
             },
             {
                 jobTitle: "Agent d'accueil",
                 company: "Entreprise X",
-                startDate: "2018-02",
-                endDate: "2020-05"
+                startDate: "2018",
+                endDate: "2020"
             }
         ],
         location: null
@@ -49,21 +49,21 @@ let employes = [
         id: 3,
         name: "oussama kara",
         role: "technician",
-        photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
+        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
         email: "sophie.laurent@worksphere.com",
         phone: "06 45 67 89 06",
         experiences: [
             {
                 jobTitle: "Technicien IT",
                 company: "Société Y",
-                startDate: "2019-03",
-                endDate: "2023-11"
+                startDate: "2019",
+                endDate: "2023"
             },
             {
                 jobTitle: "Support technique",
                 company: "Tech Solutions",
-                startDate: "2017-01",
-                endDate: "2019-03"
+                startDate: "2017",
+                endDate: "2019"
             }
         ],
         location: null
@@ -72,21 +72,21 @@ let employes = [
         id: 4,
         name: "achraf setar",
         role: "security",
-        photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
         email: "pierre.moreau@worksphere.com",
         phone: "06 56 78 90 12",
         experiences: [
             {
                 jobTitle: "Agent de sécurité",
                 company: "Securitas",
-                startDate: "2018-06",
-                endDate: "2023-12"
+                startDate: "2018",
+                endDate: "2023"
             },
             {
                 jobTitle: "Agent de surveillance",
                 company: "Vigilance SA",
-                startDate: "2015-09",
-                endDate: "2018-06"
+                startDate: "2015",
+                endDate: "2018"
             }
         ],
         location: null
@@ -136,7 +136,7 @@ const AddButtons = document.querySelectorAll('.addbtn');
 
 
 function main() {
-    markPrincipalZones();
+    zonePrincipal();
     employeDispo();
     updateZoneVisuals();
 
@@ -158,7 +158,7 @@ function main() {
 
     form.addEventListener('submit', handleEmployesubmit);
 
-    setupRealTimeValidation();
+    liveValidation();
 
     closeButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -188,27 +188,28 @@ function main() {
     });
 }
 
-function setupRealTimeValidation() {
+function liveValidation() {
     const nameInput = document.getElementById('employeeName');
     const emailInput = document.getElementById('employeeEmail');
     const phoneInput = document.getElementById('employeePhone');
     const roleSelect = document.getElementById('employeeRole');
 
-    nameInput.addEventListener('blur', () => validateField(nameInput, 'name'));
-    emailInput.addEventListener('blur', () => validateField(emailInput, 'email'));
-    phoneInput.addEventListener('blur', () => validateField(phoneInput, 'phone'));
-    roleSelect.addEventListener('change', () => validateField(roleSelect, 'role'));
+    nameInput.addEventListener('blur', () => validForm(nameInput, 'name'));
+    
+    emailInput.addEventListener('blur', () => validForm(emailInput, 'email'));
+    phoneInput.addEventListener('blur', () => validForm(phoneInput, 'phone'));
+    roleSelect.addEventListener('change', () => validForm(roleSelect, 'role'));
 
     experiencesContainer.addEventListener('blur', (e) => {
         if (e.target.classList.contains('job-title')) {
-            validateField(e.target, 'jobTitle');
+            validForm(e.target, 'jobTitle');
         } else if (e.target.classList.contains('company')) {
-            validateField(e.target, 'company');
+            validForm(e.target, 'company');
         }
     }, true);
 }
 
-function validateField(field, fieldType) {
+function validForm(field, type) {
     const value = field.value.trim();
     let isValid = true;
     let errorMessage = '';
@@ -221,14 +222,14 @@ function validateField(field, fieldType) {
         existingError.remove();
     }
 
-    switch (fieldType) {
+    switch (type) {
         case 'name':
             if (!value) {
                 isValid = false;
                 errorMessage = 'Le nom est requis';
             } else if (!validationRegex.name.test(value)) {
                 isValid = false;
-                errorMessage = 'Le nom doit contenir uniquement des lettres (2-50 caractères)';
+                errorMessage = 'Le nom doit contenir uniquement des lettres (2-50 caracteres)';
             }
             break;
 
@@ -248,7 +249,7 @@ function validateField(field, fieldType) {
                 errorMessage = 'Le téléphone est requis';
             } else if (!validationRegex.phone.test(value)) {
                 isValid = false;
-                errorMessage = 'Format de téléphone invalide (ex: 06 12 34 56 78 ou +33 6 12 34 56 78)';
+                errorMessage = 'Format de téléphone invalide (ex: 06 12 34 56 78 ou +212 6 12 34 56 78)';
             }
             break;
 
@@ -265,7 +266,7 @@ function validateField(field, fieldType) {
                 errorMessage = 'Le poste est requis';
             } else if (!validationRegex.jobTitle.test(value)) {
                 isValid = false;
-                errorMessage = 'Le poste doit contenir uniquement des lettres (2-50 caractères)';
+                errorMessage = 'Le poste doit contenir uniquement des lettres (2-50 caracteres)';
             }
             break;
 
@@ -275,14 +276,14 @@ function validateField(field, fieldType) {
                 errorMessage = 'L\'entreprise est requise';
             } else if (!validationRegex.company.test(value)) {
                 isValid = false;
-                errorMessage = 'Le nom d\'entreprise contient des caractères invalides';
+                errorMessage = 'Le nom d\'entreprise contient des caracteres invalides';
             }
             break;
     }
 
     if (!isValid) {
         field.classList.add('error');
-        showErrorMessage(field, errorMessage);
+        errorMsg(field, errorMessage);
     } else {
         field.classList.add('success');
     }
@@ -290,7 +291,7 @@ function validateField(field, fieldType) {
     return isValid;
 }
 
-function showErrorMessage(field, message) {
+function errorMsg(field, message) {
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.style.color = '#ea4335';
@@ -301,7 +302,7 @@ function showErrorMessage(field, message) {
     field.parentNode.appendChild(errorDiv);
 }
 
-function validateForm() {
+function checkValidateForm() {
     let isValid = true;
 
     const nameInput = document.getElementById('employeeName');
@@ -309,10 +310,10 @@ function validateForm() {
     const phoneInput = document.getElementById('employeePhone');
     const roleSelect = document.getElementById('employeeRole');
 
-    if (!validateField(nameInput, 'name')) isValid = false;
-    if (!validateField(emailInput, 'email')) isValid = false;
-    if (!validateField(phoneInput, 'phone')) isValid = false;
-    if (!validateField(roleSelect, 'role')) isValid = false;
+    if (!validForm(nameInput, 'name')) isValid = false;
+    if (!validForm(emailInput, 'email')) isValid = false;
+    if (!validForm(phoneInput, 'phone')) isValid = false;
+    if (!validForm(roleSelect, 'role')) isValid = false;
 
     const jobTitleInputs = document.querySelectorAll('.job-title');
     const companyInputs = document.querySelectorAll('.company');
@@ -320,8 +321,8 @@ function validateForm() {
     const endDateInputs = document.querySelectorAll('.end-date');
 
     for (let i = 0; i < jobTitleInputs.length; i++) {
-        if (!validateField(jobTitleInputs[i], 'jobTitle')) isValid = false;
-        if (!validateField(companyInputs[i], 'company')) isValid = false;
+        if (!validForm(jobTitleInputs[i], 'jobTitle')) isValid = false;
+        if (!validForm(companyInputs[i], 'company')) isValid = false;
 
         const startDate = startDateInputs[i].value;
         const endDate = endDateInputs[i].value;
@@ -329,7 +330,7 @@ function validateForm() {
         if (!startDate) {
             isValid = false;
             startDateInputs[i].classList.add('error');
-            showErrorMessage(startDateInputs[i], 'La date de début est requise');
+            errorMsg(startDateInputs[i], 'La date de début est requise');
         } else {
             startDateInputs[i].classList.remove('error');
         }
@@ -337,7 +338,7 @@ function validateForm() {
         if (!endDate) {
             isValid = false;
             endDateInputs[i].classList.add('error');
-            showErrorMessage(endDateInputs[i], 'La date de fin est requise');
+            errorMsg(endDateInputs[i], 'La date de fin est requise');
         } else {
             endDateInputs[i].classList.remove('error');
         }
@@ -345,14 +346,14 @@ function validateForm() {
         if (startDate && endDate && startDate > endDate) {
             isValid = false;
             endDateInputs[i].classList.add('error');
-            showErrorMessage(endDateInputs[i], 'La date de fin doit être après la date de début');
+            errorMsg(endDateInputs[i], 'La date de fin doit être apres la date de début');
         }
     }
 
     return isValid;
 }
 
-function markPrincipalZones() {
+function zonePrincipal() {
     principalZones.forEach(zoneId => {
         const zone = document.querySelector(`.zone[data-zone="${zoneId}"]`);
         if (zone) {
@@ -498,19 +499,15 @@ function addExperienceField() {
 }
 
 function getDefaultPhoto() {
-    const defaultPhotos = [
-        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop&crop=face",
-        "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=150&h=150&fit=crop&crop=face",
-        "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=150&h=150&fit=crop&crop=face",
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face"
-    ];
-    return defaultPhotos[Math.floor(Math.random() * defaultPhotos.length)];
+    return "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face";
+
+
 }
 
 function handleEmployesubmit(e) {
     e.preventDefault();
 
-    if (!validateForm()) {
+    if (!checkValidateForm()) {
         alert('Veuillez corriger les erreurs dans le formulaire avant de soumettre.');
         return;
     }
@@ -583,7 +580,7 @@ function handleEmployesubmit(e) {
     });
 
     addEmplModal.style.display = 'none';
-    alert('Employé ajouté avec succès!');
+    alert('Employé ajouté avec succes!');
 }
 
 function openEmployeeProfile(employeeId) {
@@ -699,3 +696,20 @@ document.addEventListener('DOMContentLoaded', () => {
     main();
     handleMobileRotation();
 });
+
+// function compteurExperience(a){
+//     const E = [];
+//     let b ;
+//     for(let i = 0 ; i < employes[a].experiences.length; i++){
+//         let dateDebut = parseInt(employes[a].experiences[i].startDate);
+//         let datefin = parseInt(employes[a].experiences[i].endDate);
+
+//          b = datefin - dateDebut;
+
+//         E[E.length] = b;
+//     }
+
+//     return E;
+// }
+
+// console.log(compteurExperience(1));
